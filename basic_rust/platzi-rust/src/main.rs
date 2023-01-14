@@ -56,7 +56,7 @@ fn main() {
         } else if dato.tipo_dato == "OPCION" {
             if let Some(data) = datos_historia.get_mut(&last_record) {
                 (*data).opciones.push(dato);
-                println!("{}", (*data).tag);
+                // println!("{}", (*data).tag);
             }
         }
 
@@ -70,7 +70,7 @@ fn main() {
             println!("{}", data.texto);
 
             for (indice, option) in data.opciones.iter().enumerate() {
-                println!("{}", option.texto);
+                println!("[{}] {}", indice, option.texto);
             }
 
             let mut seleccion = String::new();
@@ -86,6 +86,12 @@ fn main() {
             vida += data.vida;
             println!("");
         } else {
+            break;
+        }
+
+        // si la vida <= 0 entonces termina el juego
+        if vida <= 0 {
+            println!("Has perdido!");
             break;
         }
     } 
